@@ -1,4 +1,7 @@
 PODS:
+  - AFNetworkActivityLogger (2.0.3):
+    - AFNetworking/NSURLConnection (~> 2.0)
+    - AFNetworking/NSURLSession (~> 2.0)
   - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
@@ -22,9 +25,11 @@ PODS:
     - AFNetworking/NSURLSession
 
 DEPENDENCIES:
+  - AFNetworkActivityLogger
   - AFNetworking (~> 2.4)
 
 SPEC CHECKSUMS:
+  AFNetworkActivityLogger: d6a2d2755fada3a1fbf1f490ec0dd92224e092a4
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
 
 COCOAPODS: 0.34.4

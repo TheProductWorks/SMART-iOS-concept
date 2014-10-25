@@ -14,14 +14,51 @@
 
 @implementation FirstViewController
 
+@synthesize serviceOptions, tableView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    NSDictionary *envDictionary = [[NSProcessInfo processInfo] environment];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[envDictionary objectForKey:@"API_KEY"] forHTTPHeaderField:@"Api-Key"];
+    [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"] forHTTPHeaderField:@"Auth-Token"];
+
+    [manager GET:[NSString stringWithFormat:@"%@service_options", [envDictionary objectForKey:@"API_URL"]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        serviceOptions = responseObject[@"service_options"];
+        [tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections.
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    return [serviceOptions count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *simpleTableIdentifier = @"RecipeCell";
+
+    UITableViewCell *cell = [thisTableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+
+    cell.textLabel.text = [serviceOptions objectAtIndex:indexPath.row][@"name"];
+    return cell;
 }
 
 @end

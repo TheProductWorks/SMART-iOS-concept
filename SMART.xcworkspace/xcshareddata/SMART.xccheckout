@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>D5693D51-F874-4D07-B411-C5AC5F323FC8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SMART</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AB082A9E3EB7BFC89F36861CE1B8E48DC7FC3488</key>
+		<string>github.com:TheProductWorks/SMART.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SMART.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AB082A9E3EB7BFC89F36861CE1B8E48DC7FC3488</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:TheProductWorks/SMART.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AB082A9E3EB7BFC89F36861CE1B8E48DC7FC3488</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AB082A9E3EB7BFC89F36861CE1B8E48DC7FC3488</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SMART</string>
+		</dict>
+	</array>
+</dict>
+</plist>

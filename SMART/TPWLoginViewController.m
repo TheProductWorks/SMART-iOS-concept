@@ -27,7 +27,24 @@
 }
 
 - (IBAction)submitLogin:(id)sender {
-    NSLog(@"Username: %@\nPassword: %@", usernameField.text, passwordField.text);
+    NSDictionary *envDictionary = [[NSProcessInfo processInfo] environment];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    [manager.requestSerializer setValue:[envDictionary objectForKey:@"API_KEY"] forHTTPHeaderField:@"Api-Key"];
+
+    NSDictionary *parameters = @{
+                                 @"login": @{
+                                     @"username": usernameField.text,
+                                     @"password": passwordField.text
+                                 }
+                                };
+
+    [manager POST:[NSString stringWithFormat:@"%@login", [envDictionary objectForKey:@"API_URL"]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"login"][@"token"] forKey:@"access_token"];
+        [self performSegueWithIdentifier:@"loginToAppSegue" sender:self];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 /*
