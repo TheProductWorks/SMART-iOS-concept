@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFHTTPRequestOperationManager.h"
+#import "TPWNetworking.h"
+#import "TPWClinicsViewController.h"
 
 @interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *serviceOptions;
+@property (nonatomic) NSArray *clinic_ids;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

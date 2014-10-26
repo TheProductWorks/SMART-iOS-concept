@@ -18,7 +18,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+    if (accessToken) {
+        [self performSegueWithIdentifier:@"loginToAppSegue" sender:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -27,10 +31,7 @@
 }
 
 - (IBAction)submitLogin:(id)sender {
-    NSDictionary *envDictionary = [[NSProcessInfo processInfo] environment];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [manager.requestSerializer setValue:[envDictionary objectForKey:@"API_KEY"] forHTTPHeaderField:@"Api-Key"];
+    AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
 
     NSDictionary *parameters = @{
                                  @"login": @{
@@ -39,7 +40,7 @@
                                  }
                                 };
 
-    [manager POST:[NSString stringWithFormat:@"%@login", [envDictionary objectForKey:@"API_URL"]] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:@"login" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"login"][@"token"] forKey:@"access_token"];
         [self performSegueWithIdentifier:@"loginToAppSegue" sender:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

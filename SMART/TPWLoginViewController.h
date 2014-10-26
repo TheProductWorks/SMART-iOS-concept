@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AFHTTPRequestOperationManager.h"
+#import "TPWNetworking.h"
 
 @interface TPWLoginViewController : UIViewController
 
