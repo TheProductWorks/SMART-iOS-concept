@@ -1,18 +1,18 @@
 //
-//  FirstViewController.m
+//  TPWServiceOptionsViewController.m
 //  SMART
 //
 //  Created by John Smyth on 24/10/2014.
 //  Copyright (c) 2014 The Product Works. All rights reserved.
 //
 
-#import "FirstViewController.h"
+#import "TPWServiceOptionsViewController.h"
 
-@interface FirstViewController ()
+@interface TPWServiceOptionsViewController ()
 
 @end
 
-@implementation FirstViewController
+@implementation TPWServiceOptionsViewController
 
 @synthesize serviceOptions, tableView, clinic_ids;
 
@@ -32,6 +32,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

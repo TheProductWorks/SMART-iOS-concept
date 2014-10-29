@@ -13,7 +13,7 @@
 @end
 
 @implementation TPWClinicsViewController
-@synthesize clinic_ids, clinics, tableView;
+@synthesize clinic_ids, selectedClinic, clinics, tableView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,8 +21,8 @@
     AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
     clinics = [NSMutableArray array];
 
-    for (NSNumber *clinic_id in self.clinic_ids) {
-        [manager GET:[NSString stringWithFormat:@"clinics/%d", [clinic_id intValue]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    for (NSNumber *this_clinic_id in self.clinic_ids) {
+        [manager GET:[NSString stringWithFormat:@"clinics/%d", [this_clinic_id intValue]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
             [clinics addObject:responseObject[@"clinics"][0]];
             [tableView reloadData];
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -34,6 +34,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -60,7 +64,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedClinic = [clinics objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"clinicsToAppointmentsSegue" sender:self];
+}
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    ((TPWAppointmentsViewController *)[segue destinationViewController]).clinic = self.selectedClinic;
 }
 
 @end

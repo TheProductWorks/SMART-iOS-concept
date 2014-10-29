@@ -10,9 +10,10 @@
 		88E6A22291A04A0DFB864DB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2775DA3D38424E0EA385EC50 /* libPods.a */; };
 		F224EB0319FD827D0073B78F /* TPWNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = F224EB0219FD827D0073B78F /* TPWNetworking.m */; };
 		F224EB0619FD8EA50073B78F /* TPWClinicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F224EB0519FD8EA50073B78F /* TPWClinicsViewController.m */; };
+		F244FCBE1A01206A00E82604 /* TPWAppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F244FCBD1A01206A00E82604 /* TPWAppointmentsViewController.m */; };
 		F28F160C19FA8B4C0012BF4A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F160B19FA8B4C0012BF4A /* main.m */; };
 		F28F160F19FA8B4C0012BF4A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F160E19FA8B4C0012BF4A /* AppDelegate.m */; };
-		F28F161219FA8B4C0012BF4A /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F161119FA8B4C0012BF4A /* FirstViewController.m */; };
+		F28F161219FA8B4C0012BF4A /* TPWServiceOptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F161119FA8B4C0012BF4A /* TPWServiceOptionsViewController.m */; };
 		F28F161519FA8B4C0012BF4A /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F161419FA8B4C0012BF4A /* SecondViewController.m */; };
 		F28F161819FA8B4C0012BF4A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F28F161619FA8B4C0012BF4A /* Main.storyboard */; };
 		F28F161A19FA8B4C0012BF4A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F28F161919FA8B4C0012BF4A /* Images.xcassets */; };
@@ -39,13 +40,15 @@
 		F224EB0219FD827D0073B78F /* TPWNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWNetworking.m; sourceTree = "<group>"; };
 		F224EB0419FD8EA50073B78F /* TPWClinicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWClinicsViewController.h; sourceTree = "<group>"; };
 		F224EB0519FD8EA50073B78F /* TPWClinicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWClinicsViewController.m; sourceTree = "<group>"; };
+		F244FCBC1A01206A00E82604 /* TPWAppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWAppointmentsViewController.h; sourceTree = "<group>"; };
+		F244FCBD1A01206A00E82604 /* TPWAppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWAppointmentsViewController.m; sourceTree = "<group>"; };
 		F28F160619FA8B4C0012BF4A /* SMART.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMART.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F28F160A19FA8B4C0012BF4A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F28F160B19FA8B4C0012BF4A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F28F160D19FA8B4C0012BF4A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F28F160E19FA8B4C0012BF4A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F28F161019FA8B4C0012BF4A /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		F28F161119FA8B4C0012BF4A /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		F28F161019FA8B4C0012BF4A /* TPWServiceOptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TPWServiceOptionsViewController.h; sourceTree = "<group>"; };
+		F28F161119FA8B4C0012BF4A /* TPWServiceOptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TPWServiceOptionsViewController.m; sourceTree = "<group>"; };
 		F28F161319FA8B4C0012BF4A /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		F28F161419FA8B4C0012BF4A /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		F28F161719FA8B4C0012BF4A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -121,8 +124,8 @@
 				F28F163319FA9E1C0012BF4A /* TPWLoginViewController.m */,
 				F28F160D19FA8B4C0012BF4A /* AppDelegate.h */,
 				F28F160E19FA8B4C0012BF4A /* AppDelegate.m */,
-				F28F161019FA8B4C0012BF4A /* FirstViewController.h */,
-				F28F161119FA8B4C0012BF4A /* FirstViewController.m */,
+				F28F161019FA8B4C0012BF4A /* TPWServiceOptionsViewController.h */,
+				F28F161119FA8B4C0012BF4A /* TPWServiceOptionsViewController.m */,
 				F28F161319FA8B4C0012BF4A /* SecondViewController.h */,
 				F28F161419FA8B4C0012BF4A /* SecondViewController.m */,
 				F28F161619FA8B4C0012BF4A /* Main.storyboard */,
@@ -133,6 +136,8 @@
 				F224EB0219FD827D0073B78F /* TPWNetworking.m */,
 				F224EB0419FD8EA50073B78F /* TPWClinicsViewController.h */,
 				F224EB0519FD8EA50073B78F /* TPWClinicsViewController.m */,
+				F244FCBC1A01206A00E82604 /* TPWAppointmentsViewController.h */,
+				F244FCBD1A01206A00E82604 /* TPWAppointmentsViewController.m */,
 			);
 			path = SMART;
 			sourceTree = "<group>";
@@ -301,9 +306,10 @@
 				F28F161519FA8B4C0012BF4A /* SecondViewController.m in Sources */,
 				F28F163419FA9E1C0012BF4A /* TPWLoginViewController.m in Sources */,
 				F28F160F19FA8B4C0012BF4A /* AppDelegate.m in Sources */,
-				F28F161219FA8B4C0012BF4A /* FirstViewController.m in Sources */,
+				F28F161219FA8B4C0012BF4A /* TPWServiceOptionsViewController.m in Sources */,
 				F224EB0619FD8EA50073B78F /* TPWClinicsViewController.m in Sources */,
 				F28F160C19FA8B4C0012BF4A /* main.m in Sources */,
+				F244FCBE1A01206A00E82604 /* TPWAppointmentsViewController.m in Sources */,
 				F224EB0319FD827D0073B78F /* TPWNetworking.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

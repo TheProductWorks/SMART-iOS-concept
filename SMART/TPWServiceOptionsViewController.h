@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  ServiceOptionViewController.h
 //  SMART
 //
 //  Created by John Smyth on 24/10/2014.
@@ -10,7 +10,7 @@
 #import "TPWNetworking.h"
 #import "TPWClinicsViewController.h"
 
-@interface FirstViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TPWServiceOptionsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSArray *serviceOptions;
 @property (nonatomic) NSArray *clinic_ids;

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "TPWNetworking.h"
+#import "TPWAppointmentsViewController.h"
 
 @interface TPWClinicsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic) NSMutableArray *clinics;
 @property (nonatomic) NSArray *clinic_ids;
+@property (nonatomic) NSDictionary *selectedClinic;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
