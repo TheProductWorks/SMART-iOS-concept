@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="UhJ-if-BYY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
@@ -7,7 +7,7 @@
         <!--Navigation Controller-->
         <scene sceneID="f1f-9r-HvT">
             <objects>
-                <navigationController id="rmq-0n-6Pc" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavController" id="rmq-0n-6Pc" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rMA-Vh-iqG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-9" y="-36"/>
         </scene>
-        <!--Clinics View Controller-->
+        <!--Item-->
         <scene sceneID="h6r-Ys-cPi">
             <objects>
                 <viewController id="yK7-CW-6Kb" customClass="TPWClinicsViewController" sceneMemberID="viewController">
@@ -43,6 +43,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="OzT-7d-uDR"/>
                     <connections>
                         <outlet property="tableView" destination="ekW-AN-BME" id="Ary-lO-JdL"/>
                         <segue destination="Q9h-GY-8E7" kind="show" identifier="clinicsToAppointmentsSegue" id="bFR-4n-Ez8"/>
@@ -86,7 +87,7 @@
         <!--Login View Controller-->
         <scene sceneID="uLE-bh-MRd">
             <objects>
-                <viewController id="UhJ-if-BYY" customClass="TPWLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TPWLoginViewController" id="UhJ-if-BYY" customClass="TPWLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dKb-yE-ory"/>
                         <viewControllerLayoutGuide type="bottom" id="xlw-mA-Cf2"/>
@@ -139,7 +140,7 @@
                     <connections>
                         <outlet property="passwordField" destination="Cnq-LF-7UR" id="thD-Cc-23v"/>
                         <outlet property="usernameField" destination="dgP-Fg-6Dc" id="xyx-oS-IOQ"/>
-                        <segue destination="rmq-0n-6Pc" kind="show" identifier="loginToAppSegue" id="wmP-mQ-s1F"/>
+                        <segue destination="rmq-0n-6Pc" kind="show" identifier="loginToAppSegue" id="bHR-5U-bfr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SRT-Bp-Fai" userLabel="First Responder" sceneMemberID="firstResponder"/>

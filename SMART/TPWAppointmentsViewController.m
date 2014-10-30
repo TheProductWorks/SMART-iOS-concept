@@ -13,15 +13,20 @@
 @end
 
 @implementation TPWAppointmentsViewController
-@synthesize appointments, clinic, tableView;
+@synthesize appointments, clinic, tableView, times;
+
+static NSDateFormatter *timeFormatter;
+static NSDateFormatter *dateFormatter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm:ss"];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
 
     AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
     appointments = [NSMutableArray array];
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
 
     NSDictionary *params = @{
                               @"clinic_id": self.clinic[@"id"],
@@ -30,6 +35,24 @@
 
     [manager GET:@"appointments" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         appointments = responseObject[@"appointments"];
+
+        NSDate *openingTimeAsDate = [timeFormatter dateFromString:self.clinic[@"opening_time"]];
+        NSDate *closingTimeAsDate = [timeFormatter dateFromString:self.clinic[@"closing_time"]];
+
+        NSTimeInterval secondsBetween = [closingTimeAsDate timeIntervalSinceDate:openingTimeAsDate];
+        NSTimeInterval appointment_interval = [(NSString *)self.clinic[@"appointment_interval"] doubleValue];
+        NSTimeInterval minuteIntervalsBetween = secondsBetween / 60.0 / appointment_interval;
+
+        self.times = [NSMutableArray arrayWithObject:openingTimeAsDate];
+        NSCalendar *calender = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+
+        for (int i=0; i<minuteIntervalsBetween; i++) {
+            NSDate *lastDate = [self.times lastObject];
+            NSDateComponents *lastDateComponent = [calender components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute fromDate:lastDate];
+            lastDateComponent.minute += appointment_interval;
+            [self.times addObject:[calender dateFromComponents:lastDateComponent]];
+        }
+
         [tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -41,9 +64,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSDictionary *)appointmentForTime:(NSString *)date {
+- (NSDictionary *)appointmentForTime:(NSString *)time {
     for (id appointment in self.appointments) {
-        if ([appointment[@"time"] isEqualToString:date]) {
+        if ([appointment[@"time"] isEqualToString:time]) {
             return appointment;
         }
     }
@@ -58,17 +81,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
 
-    NSDate *openingTimeAsDate = [dateFormatter dateFromString:self.clinic[@"opening_time"]];
-    NSDate *closingTimeAsDate = [dateFormatter dateFromString:self.clinic[@"closing_time"]];
-
-    NSTimeInterval secondsBetween = [closingTimeAsDate timeIntervalSinceDate:openingTimeAsDate];
-    NSTimeInterval appointment_interval = [(NSString *)self.clinic[@"appointment_interval"] doubleValue];
-    NSTimeInterval minuteIntervalsBetween = secondsBetween / 60.0 / appointment_interval;
-
-    return minuteIntervalsBetween;
+    return [self.times count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,14 +92,23 @@
 
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
 
-    NSDictionary *existingAppointment = [self appointmentForTime:@""];
+    NSDate *nextDateInList = [self.times objectAtIndex:indexPath.row];
+    NSDictionary *existingAppointment = [self appointmentForTime:[timeFormatter stringFromDate:nextDateInList]];
+
+    [timeFormatter setDateFormat:@"HH:mm"];
+    NSString *displayTime = [timeFormatter stringFromDate:nextDateInList];
+    [timeFormatter setDateFormat:@"HH:mm:ss"];
+
+    cell.textLabel.text = displayTime;
+
     if (existingAppointment) {
-        cell.textLabel.text = existingAppointment[@"time"];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", displayTime, existingAppointment[@"service_user"][@"personal_fields"][@"name"], existingAppointment[@"service_user"][@"clinical_fields"][@"gestation"]];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
-        cell.textLabel.text = @"Free Slot";
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ Free Slot", displayTime];
     }
 
     return cell;

@@ -20,6 +20,21 @@
     [[AFNetworkActivityLogger sharedLogger] startLogging];
     [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
 
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = nil;
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
+
+    if (accessToken != nil) {
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"MainNavController"];
+    } else {
+        viewController = [storyboard instantiateViewControllerWithIdentifier:@"TPWLoginViewController"];
+    }
+
+    self.window.rootViewController = viewController;
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 

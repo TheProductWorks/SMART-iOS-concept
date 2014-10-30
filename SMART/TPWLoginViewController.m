@@ -18,11 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
-    if (accessToken) {
-        [self performSegueWithIdentifier:@"loginToAppSegue" sender:self];
-    }
 }
 
 - (void)didReceiveMemoryWarning {

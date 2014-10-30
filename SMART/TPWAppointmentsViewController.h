@@ -13,8 +13,9 @@
 
 @property (nonatomic) NSMutableArray *appointments;
 @property (nonatomic) NSDictionary *clinic;
+@property (nonatomic) NSMutableArray *times;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-- (NSDictionary *)appointmentForTime:(NSString *)date;
+- (NSDictionary *)appointmentForTime:(NSString *)time;
 
 @end
