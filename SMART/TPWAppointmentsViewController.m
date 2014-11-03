@@ -13,25 +13,43 @@
 @end
 
 @implementation TPWAppointmentsViewController
-@synthesize appointments, clinic, tableView, times;
+@synthesize appointments, clinic, tableView, times, selectedDate, selectedTime;
 
 static NSDateFormatter *timeFormatter;
 static NSDateFormatter *dateFormatter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.selectedDate = [NSDate date];
+
     timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"HH:mm:ss"];
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
 
-    AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
     appointments = [NSMutableArray array];
 
+    [self populateTimes];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    [self populateTimes];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)populateTimes {
+    AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
+
     NSDictionary *params = @{
-                              @"clinic_id": self.clinic[@"id"],
-                              @"date": [dateFormatter stringFromDate:[NSDate date]]
-                            };
+                             @"clinic_id": self.clinic[@"id"],
+                             @"date": [dateFormatter stringFromDate:self.selectedDate]
+                             };
 
     [manager GET:@"appointments" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         appointments = responseObject[@"appointments"];
@@ -57,11 +75,6 @@ static NSDateFormatter *dateFormatter;
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (NSDictionary *)appointmentForTime:(NSString *)time {
@@ -115,17 +128,27 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    self.selectedTime = [self.times objectAtIndex:indexPath.row];
+    NSDictionary *existingAppointment = [self appointmentForTime:[timeFormatter stringFromDate:self.selectedTime]];
+
+    if (existingAppointment) {
+        [self performSegueWithIdentifier:@"serviceUserSegue" sender:self];
+    } else {
+        [self performSegueWithIdentifier:@"modalBookingSegue" sender:self];
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    TPWAppointmentBookingViewController *destination = [segue destinationViewController];
+    [timeFormatter setDateFormat:@"HH:mm"];
+
+    destination.appointmentDetails = @{
+                                       @"date": [dateFormatter stringFromDate:self.selectedDate],
+                                       @"time": [timeFormatter stringFromDate:self.selectedTime],
+                                       @"clinic_id": self.clinic[@"id"]
+                                     };
+
+    [timeFormatter setDateFormat:@"HH:mm:ss"];
 }
-*/
 
 @end

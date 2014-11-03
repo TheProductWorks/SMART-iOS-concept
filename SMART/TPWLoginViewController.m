@@ -36,7 +36,10 @@
                                 };
 
     [manager POST:@"login" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [[NSUserDefaults standardUserDefaults] setObject:responseObject[@"login"][@"token"] forKey:@"access_token"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:responseObject[@"login"][@"token"] forKey:@"access_token"];
+        [defaults setObject:responseObject[@"login"][@"id"] forKey:@"loggedin_service_provider_id"];
+
         [self performSegueWithIdentifier:@"loginToAppSegue" sender:self];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

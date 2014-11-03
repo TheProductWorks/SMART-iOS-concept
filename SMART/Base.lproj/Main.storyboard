@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-9" y="-36"/>
         </scene>
-        <!--Item-->
+        <!--Clinics-->
         <scene sceneID="h6r-Ys-cPi">
             <objects>
-                <viewController id="yK7-CW-6Kb" customClass="TPWClinicsViewController" sceneMemberID="viewController">
+                <viewController title="Clinics" id="yK7-CW-6Kb" customClass="TPWClinicsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FGc-ny-1rg"/>
                         <viewControllerLayoutGuide type="bottom" id="R8F-FX-ktF"/>
@@ -53,10 +53,10 @@
             </objects>
             <point key="canvasLocation" x="2251" y="-338"/>
         </scene>
-        <!--Appointments View Controller-->
+        <!--Appointments-->
         <scene sceneID="uO6-L4-eUa">
             <objects>
-                <viewController id="Q9h-GY-8E7" customClass="TPWAppointmentsViewController" sceneMemberID="viewController">
+                <viewController title="Appointments" id="Q9h-GY-8E7" customClass="TPWAppointmentsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hYZ-Ff-xvy"/>
                         <viewControllerLayoutGuide type="bottom" id="PUx-2g-AWh"/>
@@ -78,11 +78,74 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="n9Y-Qf-v6C" id="1uI-nC-8fC"/>
+                        <segue destination="S8p-3q-0pH" kind="presentation" identifier="modalBookingSegue" id="We9-cR-1DI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlx-vX-KPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3013" y="-338"/>
+        </scene>
+        <!--Appointment Summary-->
+        <scene sceneID="NK0-tf-F4u">
+            <objects>
+                <viewController title="Appointment Summary" id="S8p-3q-0pH" customClass="TPWAppointmentBookingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yen-Kh-9MO"/>
+                        <viewControllerLayoutGuide type="bottom" id="KbR-xL-bZZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m0b-R2-H8e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="abh-Yj-Y0H">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Appointment Summary" id="kmF-9S-IZY">
+                                        <barButtonItem key="backBarButtonItem" title="Back" id="dvP-nD-Dvt"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Close" id="69g-U2-bwD">
+                                            <connections>
+                                                <action selector="dismissModal:" destination="S8p-3q-0pH" id="z9U-Pt-qrc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bJx-5K-Ab4">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="S8p-3q-0pH" id="1aB-9R-pKF"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="abh-Yj-Y0H" secondAttribute="centerX" id="1tR-vI-0ts"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="leading" secondItem="m0b-R2-H8e" secondAttribute="leading" id="Dva-QT-oYS"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="leading" secondItem="abh-Yj-Y0H" secondAttribute="leading" id="G0O-48-WuD"/>
+                            <constraint firstItem="KbR-xL-bZZ" firstAttribute="top" secondItem="bJx-5K-Ab4" secondAttribute="bottom" constant="440" id="a1g-KC-xV3"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="top" secondItem="abh-Yj-Y0H" secondAttribute="bottom" id="ijA-fP-06c"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="trailing" secondItem="abh-Yj-Y0H" secondAttribute="trailing" id="sUr-8Q-fiB"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="6Dk-M8-nlX" id="f7f-p8-Lja"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vO6-aG-cyJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="6Dk-M8-nlX">
+                    <connections>
+                        <outlet property="delegate" destination="S8p-3q-0pH" id="Tip-Xl-Du0"/>
+                        <outlet property="searchBar" destination="bJx-5K-Ab4" id="dPY-gy-m2u"/>
+                        <outlet property="searchContentsController" destination="S8p-3q-0pH" id="yag-pD-NF5"/>
+                        <outlet property="searchResultsDataSource" destination="S8p-3q-0pH" id="vSD-yX-mcS"/>
+                        <outlet property="searchResultsDelegate" destination="S8p-3q-0pH" id="uPc-KW-fcb"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="3013" y="407"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="uLE-bh-MRd">
@@ -166,10 +229,10 @@
             </objects>
             <point key="canvasLocation" x="692" y="-36"/>
         </scene>
-        <!--Item-->
+        <!--Service Options-->
         <scene sceneID="pkK-Sq-gne">
             <objects>
-                <viewController id="vyv-ER-dSQ" customClass="TPWServiceOptionsViewController" sceneMemberID="viewController">
+                <viewController title="Service Options" id="vyv-ER-dSQ" customClass="TPWServiceOptionsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mnq-O2-X2c"/>
                         <viewControllerLayoutGuide type="bottom" id="1Ab-W2-Jcx"/>
