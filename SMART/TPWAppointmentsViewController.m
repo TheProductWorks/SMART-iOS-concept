@@ -139,16 +139,23 @@ static NSDateFormatter *dateFormatter;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    TPWAppointmentBookingViewController *destination = [segue destinationViewController];
-    [timeFormatter setDateFormat:@"HH:mm"];
+    if ([segue.identifier isEqualToString:@"modalBookingSegue"]) {
+        TPWAppointmentBookingViewController *destination = [segue destinationViewController];
+        [timeFormatter setDateFormat:@"HH:mm"];
 
-    destination.appointmentDetails = @{
-                                       @"date": [dateFormatter stringFromDate:self.selectedDate],
-                                       @"time": [timeFormatter stringFromDate:self.selectedTime],
-                                       @"clinic_id": self.clinic[@"id"]
-                                     };
+        destination.appointmentDetails = @{
+                                           @"date": [dateFormatter stringFromDate:self.selectedDate],
+                                           @"time": [timeFormatter stringFromDate:self.selectedTime],
+                                           @"clinic_id": self.clinic[@"id"]
+                                         };
 
-    [timeFormatter setDateFormat:@"HH:mm:ss"];
+        [timeFormatter setDateFormat:@"HH:mm:ss"];
+    } else {
+        TPWServiceUserViewController *destination = [segue destinationViewController];
+        NSDictionary *selectedAppointment = [self appointmentForTime:[timeFormatter stringFromDate:self.selectedTime]];
+
+        destination.serviceUser = selectedAppointment[@"service_user"];
+    }
 }
 
 @end

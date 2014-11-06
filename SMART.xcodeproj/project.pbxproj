@@ -19,6 +19,7 @@
 		F28F161D19FA8B4C0012BF4A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F28F161B19FA8B4C0012BF4A /* LaunchScreen.xib */; };
 		F28F162919FA8B4C0012BF4A /* SMARTTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F162819FA8B4C0012BF4A /* SMARTTests.m */; };
 		F28F163419FA9E1C0012BF4A /* TPWLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F163319FA9E1C0012BF4A /* TPWLoginViewController.m */; };
+		F2DFCB171A0A7D7E00B9899A /* TPWServiceUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2DFCB161A0A7D7E00B9899A /* TPWServiceUserViewController.m */; };
 		F2E00A5F1A03DE3400258A21 /* TPWAppointmentBookingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E00A5E1A03DE3400258A21 /* TPWAppointmentBookingViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,8 @@
 		F28F162819FA8B4C0012BF4A /* SMARTTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMARTTests.m; sourceTree = "<group>"; };
 		F28F163219FA9E1C0012BF4A /* TPWLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWLoginViewController.h; sourceTree = "<group>"; };
 		F28F163319FA9E1C0012BF4A /* TPWLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWLoginViewController.m; sourceTree = "<group>"; };
+		F2DFCB151A0A7D7E00B9899A /* TPWServiceUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWServiceUserViewController.h; sourceTree = "<group>"; };
+		F2DFCB161A0A7D7E00B9899A /* TPWServiceUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWServiceUserViewController.m; sourceTree = "<group>"; };
 		F2E00A5D1A03DE3400258A21 /* TPWAppointmentBookingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPWAppointmentBookingViewController.h; sourceTree = "<group>"; };
 		F2E00A5E1A03DE3400258A21 /* TPWAppointmentBookingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPWAppointmentBookingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +141,8 @@
 				F244FCBD1A01206A00E82604 /* TPWAppointmentsViewController.m */,
 				F2E00A5D1A03DE3400258A21 /* TPWAppointmentBookingViewController.h */,
 				F2E00A5E1A03DE3400258A21 /* TPWAppointmentBookingViewController.m */,
+				F2DFCB151A0A7D7E00B9899A /* TPWServiceUserViewController.h */,
+				F2DFCB161A0A7D7E00B9899A /* TPWServiceUserViewController.m */,
 			);
 			path = SMART;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2DFCB171A0A7D7E00B9899A /* TPWServiceUserViewController.m in Sources */,
 				F28F163419FA9E1C0012BF4A /* TPWLoginViewController.m in Sources */,
 				F28F160F19FA8B4C0012BF4A /* AppDelegate.m in Sources */,
 				F2E00A5F1A03DE3400258A21 /* TPWAppointmentBookingViewController.m in Sources */,

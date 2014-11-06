@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TPWNetworking.h"
 #import "TPWAppointmentBookingViewController.h"
+#import "TPWServiceUserViewController.h"
 
 @interface TPWAppointmentsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

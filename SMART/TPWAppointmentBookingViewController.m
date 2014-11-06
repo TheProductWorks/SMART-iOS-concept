@@ -70,13 +70,13 @@ static AFHTTPRequestOperationManager *manager;
     if (buttonIndex == 1) {
         NSDictionary *params = @{
                                  @"appointment": @{
-                                 @"date": self.appointmentDetails[@"date"],
-                                 @"time": self.appointmentDetails[@"time"],
-                                 @"service_provider_id": [[NSUserDefaults standardUserDefaults] objectForKey:@"loggedin_service_provider_id"],
-                                 @"service_user_id": self.selectedSearchResult[@"id"],
-                                 @"priority": @"scheduled",
-                                 @"visit_type": @"ante-natal",
-                                 @"clinic_id": self.appointmentDetails[@"clinic_id"]
+                                     @"date": self.appointmentDetails[@"date"],
+                                     @"time": self.appointmentDetails[@"time"],
+                                     @"service_provider_id": [[NSUserDefaults standardUserDefaults] objectForKey:@"loggedin_service_provider_id"],
+                                     @"service_user_id": self.selectedSearchResult[@"id"],
+                                     @"priority": @"scheduled",
+                                     @"visit_type": @"ante-natal",
+                                     @"clinic_id": self.appointmentDetails[@"clinic_id"]
                                  }
                                 };
 

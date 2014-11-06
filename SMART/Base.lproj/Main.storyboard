@@ -79,11 +79,100 @@
                     <connections>
                         <outlet property="tableView" destination="n9Y-Qf-v6C" id="1uI-nC-8fC"/>
                         <segue destination="S8p-3q-0pH" kind="presentation" identifier="modalBookingSegue" id="We9-cR-1DI"/>
+                        <segue destination="dop-Dn-gJz" kind="show" identifier="serviceUserSegue" id="xbx-G8-1UW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlx-vX-KPF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3013" y="-338"/>
+            <point key="canvasLocation" x="3066" y="-338"/>
+        </scene>
+        <!--Service User-->
+        <scene sceneID="bMO-j5-Nae">
+            <objects>
+                <viewController title="Service User" id="dop-Dn-gJz" customClass="TPWServiceUserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YDt-9d-vki"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Pr-py-9ub"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cea-xQ-Nqu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BMX-zv-qeR">
+                                <rect key="frame" x="279" y="72" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJe-wf-c7W">
+                                <rect key="frame" x="279" y="101" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6xc-z6-AaA">
+                                <rect key="frame" x="270" y="158" width="60" height="30"/>
+                                <state key="normal" title="Personal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="personalTapped:" destination="dop-Dn-gJz" eventType="touchUpInside" id="beF-TN-1OC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vql-de-UBa">
+                                <rect key="frame" x="194" y="158" width="32" height="30"/>
+                                <state key="normal" title="Ante">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="anteTapped:" destination="dop-Dn-gJz" eventType="touchUpInside" id="fXo-ze-mWf"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k3O-6A-9nC">
+                                <rect key="frame" x="0.0" y="196" width="600" height="355"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dop-Dn-gJz" id="Xro-3k-6LY"/>
+                                    <outlet property="delegate" destination="dop-Dn-gJz" id="bFg-bK-LoY"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nQR-cI-0QM">
+                                <rect key="frame" x="371" y="158" width="32" height="30"/>
+                                <state key="normal" title="Post">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postTapped:" destination="dop-Dn-gJz" eventType="touchUpInside" id="cUf-ZX-f8J"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="k3O-6A-9nC" secondAttribute="trailing" id="19R-Oh-b6g"/>
+                            <constraint firstItem="6xc-z6-AaA" firstAttribute="leading" secondItem="vql-de-UBa" secondAttribute="trailing" constant="44" id="1fj-gQ-joX"/>
+                            <constraint firstItem="nQR-cI-0QM" firstAttribute="leading" secondItem="6xc-z6-AaA" secondAttribute="trailing" constant="41" id="3YG-fz-ndd"/>
+                            <constraint firstItem="6xc-z6-AaA" firstAttribute="top" secondItem="GJe-wf-c7W" secondAttribute="bottom" constant="36" id="4Wm-Zr-afz"/>
+                            <constraint firstItem="GJe-wf-c7W" firstAttribute="centerX" secondItem="6xc-z6-AaA" secondAttribute="centerX" id="ED1-PJ-WEm"/>
+                            <constraint firstItem="6xc-z6-AaA" firstAttribute="centerX" secondItem="k3O-6A-9nC" secondAttribute="centerX" id="H31-wB-0Mk"/>
+                            <constraint firstItem="k3O-6A-9nC" firstAttribute="top" secondItem="vql-de-UBa" secondAttribute="bottom" constant="8" symbolic="YES" id="IMk-vl-T6J"/>
+                            <constraint firstItem="vql-de-UBa" firstAttribute="baseline" secondItem="6xc-z6-AaA" secondAttribute="baseline" id="Lhv-Y8-7vt"/>
+                            <constraint firstItem="BMX-zv-qeR" firstAttribute="leading" secondItem="GJe-wf-c7W" secondAttribute="leading" id="NGb-HO-3B4"/>
+                            <constraint firstItem="BMX-zv-qeR" firstAttribute="top" secondItem="YDt-9d-vki" secondAttribute="bottom" constant="8" symbolic="YES" id="aac-ie-byi"/>
+                            <constraint firstItem="GJe-wf-c7W" firstAttribute="top" secondItem="BMX-zv-qeR" secondAttribute="bottom" constant="8" symbolic="YES" id="blb-pf-UBo"/>
+                            <constraint firstItem="6xc-z6-AaA" firstAttribute="baseline" secondItem="nQR-cI-0QM" secondAttribute="baseline" id="gsV-X9-mCy"/>
+                            <constraint firstItem="k3O-6A-9nC" firstAttribute="leading" secondItem="cea-xQ-Nqu" secondAttribute="leading" id="pyg-wn-8ty"/>
+                            <constraint firstItem="k3O-6A-9nC" firstAttribute="bottom" secondItem="9Pr-py-9ub" secondAttribute="top" id="vn6-rE-Qbx"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="criticalInfo" destination="GJe-wf-c7W" id="UiL-rG-uxP"/>
+                        <outlet property="suName" destination="BMX-zv-qeR" id="qhZ-vn-Yvr"/>
+                        <outlet property="tableView" destination="k3O-6A-9nC" id="t4a-oZ-zbV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xam-ku-Bdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3899" y="-338"/>
         </scene>
         <!--Appointment Summary-->
         <scene sceneID="NK0-tf-F4u">
@@ -120,12 +209,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="abh-Yj-Y0H" secondAttribute="centerX" id="1tR-vI-0ts"/>
-                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="leading" secondItem="m0b-R2-H8e" secondAttribute="leading" id="Dva-QT-oYS"/>
-                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="leading" secondItem="abh-Yj-Y0H" secondAttribute="leading" id="G0O-48-WuD"/>
-                            <constraint firstItem="KbR-xL-bZZ" firstAttribute="top" secondItem="bJx-5K-Ab4" secondAttribute="bottom" constant="440" id="a1g-KC-xV3"/>
-                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="top" secondItem="abh-Yj-Y0H" secondAttribute="bottom" id="ijA-fP-06c"/>
-                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="trailing" secondItem="abh-Yj-Y0H" secondAttribute="trailing" id="sUr-8Q-fiB"/>
+                            <constraint firstItem="abh-Yj-Y0H" firstAttribute="leading" secondItem="m0b-R2-H8e" secondAttribute="leading" id="0pb-cU-8Hk"/>
+                            <constraint firstItem="abh-Yj-Y0H" firstAttribute="top" secondItem="Yen-Kh-9MO" secondAttribute="bottom" constant="8" id="3z1-Lr-Rxw"/>
+                            <constraint firstAttribute="trailing" secondItem="abh-Yj-Y0H" secondAttribute="trailing" id="NP9-wa-u4t"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="top" secondItem="abh-Yj-Y0H" secondAttribute="bottom" id="QGw-WR-BeF"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="trailing" secondItem="abh-Yj-Y0H" secondAttribute="trailing" id="gjZ-FJ-mU2"/>
+                            <constraint firstItem="bJx-5K-Ab4" firstAttribute="leading" secondItem="abh-Yj-Y0H" secondAttribute="leading" id="z4h-ob-wDl"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -252,7 +341,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="z9D-YC-Lae"/>
+                    <tabBarItem key="tabBarItem" title="Service Options" id="z9D-YC-Lae"/>
                     <connections>
                         <outlet property="tableView" destination="wMA-a3-7MF" id="0oj-RK-kpB"/>
                         <segue destination="yK7-CW-6Kb" kind="show" identifier="soToClinicsSegue" id="on0-L3-cps"/>
