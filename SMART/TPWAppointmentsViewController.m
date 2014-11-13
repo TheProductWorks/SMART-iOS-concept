@@ -118,7 +118,7 @@ static NSDateFormatter *dateFormatter;
     cell.textLabel.text = displayTime;
 
     if (existingAppointment) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", displayTime, existingAppointment[@"service_user"][@"personal_fields"][@"name"], existingAppointment[@"service_user"][@"clinical_fields"][@"gestation"]];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ %@ %@", displayTime, existingAppointment[@"service_user"][@"name"], existingAppointment[@"service_user"][@"gestation"]];
         cell.accessoryType = UITableViewCellAccessoryNone;
     } else {
         cell.textLabel.text = [NSString stringWithFormat:@"%@ Free Slot", displayTime];

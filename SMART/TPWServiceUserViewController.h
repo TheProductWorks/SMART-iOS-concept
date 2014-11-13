@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TPWNetworking.h"
 
 @interface TPWServiceUserViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic) NSDictionary *serviceUser;
+@property (nonatomic) NSMutableDictionary *serviceUser;
 @property (nonatomic) NSString *selectedButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *suName;

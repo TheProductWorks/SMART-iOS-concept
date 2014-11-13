@@ -21,13 +21,26 @@
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *dob = [formatter dateFromString:self.serviceUser[@"personal_fields"][@"dob"]];
 
-    NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear
-                                                                   fromDate:dob toDate:[[NSDate alloc] init] options: 0];
+    AFHTTPRequestOperationManager *manager = [TPWNetworking manager];
 
-    self.suName.text = self.serviceUser[@"personal_fields"][@"name"];
-    self.criticalInfo.text = [NSString stringWithFormat:@"%ldyrs, P:%@, G:%@", (long)components.year, self.serviceUser[@"clinical_fields"][@"parity"], self.serviceUser[@"clinical_fields"][@"gestation"]];
+    [manager GET:[NSString stringWithFormat:@"service_users/%@", self.serviceUser[@"id"]] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        self.serviceUser = [NSMutableDictionary dictionaryWithDictionary:responseObject[@"service_users"][0]];
+        self.serviceUser[@"babies"] = responseObject[@"babies"];
+        self.serviceUser[@"pregnancies"] = responseObject[@"pregnancies"];
+
+        NSDate *dob = [formatter dateFromString:self.serviceUser[@"personal_fields"][@"dob"]];
+
+        NSDateComponents *components = [[NSCalendar currentCalendar] components: NSCalendarUnitYear
+                                                                       fromDate:dob toDate:[[NSDate alloc] init] options: 0];
+
+        self.suName.text = self.serviceUser[@"personal_fields"][@"name"];
+        self.criticalInfo.text = [NSString stringWithFormat:@"%ldyrs, P:%@, G:%@", (long)components.year, self.serviceUser[@"clinical_fields"][@"parity"], self.serviceUser[@"pregnancies"][0][@"gestation"]];
+
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,7 +169,7 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = currentPregnancy[@"estimated_delivery_date"];
         } else if (indexPath.row == 1) {
-            cell.textLabel.text = clinical_fields[@"gestation"];
+            cell.textLabel.text = currentPregnancy[@"gestation"];
         } else if (indexPath.row == 2) {
             cell.textLabel.text = clinical_fields[@"blood_group"];
         } else if (indexPath.row == 3) {
@@ -167,7 +180,7 @@
     } else {
         if (indexPath.section == 0) {
             if (indexPath.row == 0) {
-                cell.textLabel.text = currentPregnancy[@"birth_mode"];
+                cell.textLabel.text = [(NSArray *)currentPregnancy[@"birth_mode"] componentsJoinedByString:@","];
             } else if (indexPath.row == 1) {
                 cell.textLabel.text = currentPregnancy[@"perineum"];
             } else if (indexPath.row == 2) {
@@ -177,17 +190,24 @@
             }
         } else {
             NSDictionary *baby = self.serviceUser[@"babies"][indexPath.section - 1];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+            NSDate *babyDeliveryDate = [formatter dateFromString:baby[@"delivery_date_time"]];
 
             if (indexPath.row == 0) {
-                cell.textLabel.text = baby[@"delivery_date_time"];
+                [formatter setDateFormat:@"dd/MM/yyyy"];
+                cell.textLabel.text = [formatter stringFromDate:babyDeliveryDate];
             } else if (indexPath.row == 1) {
-                cell.textLabel.text = baby[@"delivery_date_time"];
+                [formatter setDateFormat:@"HH:mm"];
+                cell.textLabel.text = [formatter stringFromDate:babyDeliveryDate];
             } else if (indexPath.row == 2) {
-                cell.textLabel.text = @"DAYS since birth here";
+                NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay
+                                                                               fromDate:babyDeliveryDate toDate:[[NSDate alloc] init] options:0];
+                cell.textLabel.text = [NSString stringWithFormat:@"%ld", components.day];
             } else if (indexPath.row == 3) {
                 cell.textLabel.text = baby[@"gender"];
             } else if (indexPath.row == 4) {
-                cell.textLabel.text = baby[@"weight"];
+                cell.textLabel.text = [NSString stringWithFormat:@"%.2fkgs", ([baby[@"weight"] doubleValue] / 1000)];
             } else if (indexPath.row == 5) {
                 cell.textLabel.text = baby[@"vitamin_k"];
             } else if (indexPath.row == 6) {
